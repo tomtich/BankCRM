@@ -2,6 +2,7 @@ package com.bank.crm.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -15,7 +16,7 @@ public class Authority {
 	// Columns: username varchar(100), authority varchar(100)
 	// authority = ROLE_BANK_MANAGER, ROLE_ADMIN, ROLE_USER, etc.
 	
-	@Column(length=100)
+	@Id
 	private String username;
 	
 	@Column(length=50)

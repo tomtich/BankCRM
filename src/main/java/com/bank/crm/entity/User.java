@@ -2,6 +2,7 @@ package com.bank.crm.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -16,7 +17,7 @@ public class User {
 	// Columns: username varchar(100), password varchar(100), enabled tinyint (1 or 0)
 	// enabled = 1 -> user can access the system
 	
-	@Column(length=100)
+	@Id
 	private String username;
 	
 	@Column(length=100)
@@ -24,6 +25,9 @@ public class User {
 	
 	@Column
 	private int enabled;
+	
+	@Column
+	private int status; // indicates whether a user is logged in or not
 
 	public String getUsername() {
 		return username;
@@ -48,6 +52,12 @@ public class User {
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
-	
-	
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 }
