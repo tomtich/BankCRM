@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bank.crm.service.AuthService;
+import com.bank.crm.service.BankService;
 
 @Controller
 public class BankController {
@@ -17,6 +19,8 @@ public class BankController {
 //	@Autowired
 //	@Qualifier("AuthServiceImpl")
 	private AuthService authService;
+	
+	private BankService bankService;
 
 	@RequestMapping(value="/test")
 	public String test() {
@@ -29,6 +33,18 @@ public class BankController {
 	public String bankManagerHome() {
 		String test = "Hello Bank Manager!";
 		System.out.println(test);
+		return "bankManagerHome";
+	}
+	
+	@RequestMapping(value="acceptCustomer")
+	public String acceptCustomer(@RequestParam("cid") int cid) {
+		String result = bankService.acceptCustomer(cid);
+		return "bankManagerHome";
+	}
+	
+	@RequestMapping(value="rejectCustomer")
+	public String rejectCustomer(@RequestParam("cid") int cid) {
+		String result = bankService.rejectCustomer(cid);
 		return "bankManagerHome";
 	}
 	
