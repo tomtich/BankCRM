@@ -3,8 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+<!-- To turn off Spring security, comment out the filter and the context param -->
  
-  <filter>
+<!--   <filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
@@ -12,16 +13,16 @@
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 	
-	<listener>
+<!-- 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener> -->
 
-	<context-param>
+<!-- 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/config/security-config.xml</param-value>
-	</context-param>
+	</context-param> -->
 
 	<servlet>
 		<servlet-name>fitTrackerServlet</servlet-name>

@@ -14,8 +14,8 @@ import com.bank.crm.service.AuthService;
 @Controller
 public class BankController {
 	
-	@Autowired
-	@Qualifier("AuthServiceImpl")
+//	@Autowired
+//	@Qualifier("AuthServiceImpl")
 	private AuthService authService;
 
 	@RequestMapping(value="/test")
@@ -25,10 +25,17 @@ public class BankController {
 		return "test";
 	}
 	
+	@RequestMapping(value="bankManagerHome")
+	public String bankManagerHome() {
+		String test = "Hello Bank Manager!";
+		System.out.println(test);
+		return "bankManagerHome";
+	}
+	
 	@RequestMapping(value="auth")
 	public String authUser(String username, String password, HttpSession session, Model model) {
 		String redirect;
-		String role = authService.authUser(username, password);
+		String role = authService.authorizeUser(username, password);
 		if (role.equals("ROLE_BANK_MANAGER")) {
 			session.setAttribute("username", username);
 			session.setAttribute("role", role);

@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 
-@Service("AuthServiceImpl")
-@Transactional(propagation=Propagation.REQUIRED)
+//@Service("AuthServiceImpl")
+//@Transactional(propagation=Propagation.REQUIRED)
 public class AuthServiceImpl implements AuthService {
 	
-	@Autowired
-	@Qualifier("AuthDaoImpl")
+//	@Autowired
+//	@Qualifier("AuthDaoImpl")
 	private AuthDao authDao;
 
 	public String authenticateUser(String username, String password) {
