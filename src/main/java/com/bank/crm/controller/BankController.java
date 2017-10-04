@@ -58,7 +58,7 @@ public class BankController {
 		return "bankManagerHome";
 	}
 	
-	@RequestMapping(value="showEmployees", method=RequestMethod.GET)
+	@RequestMapping(value="showPendingCustomers", method=RequestMethod.GET)
 	public String showEmployees(Model model) {
 		List<CustomerForm> customerList = bankService.showPendingCustomers();
 		model.addAttribute("customerList", customerList);
