@@ -57,6 +57,7 @@ Hello Bank Manager!
         <%
         List<CustomerForm> customerList = (List<CustomerForm>) request.getAttribute("customerList");
         int count=1;
+        System.out.println(customerList);
         for(CustomerForm cf : customerList) {
         %>
         <tbody>

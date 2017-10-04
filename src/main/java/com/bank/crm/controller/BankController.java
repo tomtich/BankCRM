@@ -26,6 +26,8 @@ public class BankController {
 //	@Qualifier("AuthServiceImpl")
 	private AuthService authService;
 	
+	@Autowired
+	@Qualifier("BankServiceImpl")
 	private BankService bankService;
 
 	@RequestMapping(value="/test")
@@ -58,8 +60,9 @@ public class BankController {
 		return "bankManagerHome";
 	}
 	
-	@RequestMapping(value="showPendingCustomers", method=RequestMethod.GET)
-	public String showEmployees(Model model) {
+	@RequestMapping(value="bankManagerHome", method=RequestMethod.GET)
+	public String showPendingCustomers(Model model) {
+		System.out.println("In Controller");
 		List<CustomerForm> customerList = bankService.showPendingCustomers();
 		model.addAttribute("customerList", customerList);
 		return "bankManagerHome";
