@@ -20,7 +20,7 @@ public class BankDaoImpl extends HibernateDaoSupport implements BankDao {
 	
 	@Autowired
 	@Qualifier("sessionFactory")
-	public void setCustomerSessionFactory(SessionFactory sessionFactory) {
+	public void setBankSessionFactory(SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
 	}
 
