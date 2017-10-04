@@ -24,4 +24,10 @@ public class BankDaoImpl extends HibernateDaoSupport implements BankDao {
 		return "rejected";
 	}
 
+	public List<Customer> showPendingCustomers() {
+		List<Customer> customerList = 
+				(List<Customer>) super.getHibernateTemplate().find("from Customer where status=?", "Pending");
+		return customerList;
+	}
+
 }
