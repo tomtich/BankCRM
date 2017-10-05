@@ -65,6 +65,9 @@ public class BankController {
 		System.out.println("In Controller");
 		List<CustomerForm> customerList = bankService.showPendingCustomers();
 		model.addAttribute("customerList", customerList);
+		for (CustomerForm cf : customerList) {
+			System.out.println(cf.getName());
+		}
 		return "bankManagerHome";
 	}
 	
