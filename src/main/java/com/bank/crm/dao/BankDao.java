@@ -13,5 +13,7 @@ public interface BankDao {
 	public String rejectCustomer(int cid);
 	
 	public List<Customer> showPendingCustomers();
+	
+	public List<Customer> showAcceptedCustomers();
 
 }

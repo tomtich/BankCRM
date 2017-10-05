@@ -40,9 +40,24 @@ public class BankDaoImpl extends HibernateDaoSupport implements BankDao {
 		return "rejected";
 	}
 
+	/**
+	 * Retrieves all Customers whose statuses are Pending, and haven't been
+	 * accepted or rejected by the Bank Manager.
+	 */
 	public List<Customer> showPendingCustomers() {
 		List<Customer> customerList = 
 				(List<Customer>) super.getHibernateTemplate().find("from Customer where status=?", "Pending");
+		return customerList;
+	}
+	
+	/**
+	 * Retrieves all Customers whose statuses are Accepted, having had their
+	 * requests approved by the Bank Manager.
+	 * @return
+	 */
+	public List<Customer> showAcceptedCustomers() {
+		List<Customer> customerList = 
+				(List<Customer>) super.getHibernateTemplate().find("from Customer where status=?", "Accepted");
 		return customerList;
 	}
 

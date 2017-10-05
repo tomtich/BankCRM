@@ -44,6 +44,13 @@ public class BankController {
 		return "bankManagerHome";
 	}
 	
+	@RequestMapping(value="teamAgentHome")
+	public String teamAgentHome() {
+		String test = "Hello Team Agent!";
+		System.out.println(test);
+		return "teamAgentHome";
+	}
+	
 	@RequestMapping(value="acceptCustomer.do", method=RequestMethod.PUT,
 			consumes = {"application/json", "application/xml"},
 			produces = {"application/json", "application/xml"})
@@ -69,6 +76,16 @@ public class BankController {
 			System.out.println(cf.getName());
 		}
 		return "bankManagerHome";
+	}
+	
+	@RequestMapping(value="teamAgentHome", method=RequestMethod.GET)
+	public String showAcceptedCustomers(Model model) {
+		List<CustomerForm> customerList = bankService.showAcceptedCustomers();
+		model.addAttribute("customerList", customerList);
+		for (CustomerForm cf : customerList) { //for testing purposes
+			System.out.println(cf.getName());
+		}
+		return "teamAgentHome";
 	}
 	
 //	@RequestMapping(value="/update", method=RequestMethod.PUT,

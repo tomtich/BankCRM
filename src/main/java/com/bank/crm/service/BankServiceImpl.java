@@ -42,4 +42,15 @@ public class BankServiceImpl implements BankService {
 		return customerFormList;
 	}
 
+	public List<CustomerForm> showAcceptedCustomers() {
+		List<Customer> customerList = bankDao.showAcceptedCustomers(); //get the Customers
+		List<CustomerForm> customerFormList = new ArrayList<CustomerForm>(); //make a list of CustomerForms
+		for (Customer customer : customerList) {
+			CustomerForm customerForm = new CustomerForm();
+			BeanUtils.copyProperties(customer, customerForm); //transfer properties of each Customer to CustomerForms
+			customerFormList.add(customerForm); //populate the CustomerForm list
+		}
+		return customerFormList;
+	}
+
 }
