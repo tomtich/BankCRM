@@ -44,11 +44,11 @@ public class BankController {
 		return "bankManagerHome";
 	}
 	
-	@RequestMapping(value="teamAgentHome")
+	@RequestMapping(value="teamLeaderHome")
 	public String teamAgentHome() {
 		String test = "Hello Team Agent!";
 		System.out.println(test);
-		return "teamAgentHome";
+		return "teamLeaderHome";
 	}
 	
 	@RequestMapping(value="acceptCustomer.do", method=RequestMethod.PUT,
@@ -78,14 +78,14 @@ public class BankController {
 		return "bankManagerHome";
 	}
 	
-	@RequestMapping(value="teamAgentHome", method=RequestMethod.GET)
+	@RequestMapping(value="teamLeaderHome", method=RequestMethod.GET)
 	public String showAcceptedCustomers(Model model) {
 		List<CustomerForm> customerList = bankService.showAcceptedCustomers();
 		model.addAttribute("customerList", customerList);
 		for (CustomerForm cf : customerList) { //for testing purposes
 			System.out.println(cf.getName());
 		}
-		return "teamAgentHome";
+		return "teamLeaderHome";
 	}
 	
 //	@RequestMapping(value="/update", method=RequestMethod.PUT,
