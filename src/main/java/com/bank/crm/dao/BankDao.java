@@ -2,7 +2,7 @@ package com.bank.crm.dao;
 
 import java.util.List;
 
-import com.web.bank.model.Customer;
+import com.bank.crm.entity.Customer;
 
 public interface BankDao {
 	

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bank.crm.dao.BankDao;
 import com.web.bank.controller.model.CustomerForm;
-import com.web.bank.model.Customer;
+import com.bank.crm.entity.Customer;
 
 @Service("BankServiceImpl")
 @Transactional(propagation=Propagation.REQUIRED)

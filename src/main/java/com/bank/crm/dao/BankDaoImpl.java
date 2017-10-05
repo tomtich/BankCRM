@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import com.web.bank.model.Customer;
+import com.bank.crm.entity.Customer;
 
 @Repository("BankDaoImpl")
 @Scope("singleton")
