@@ -1,5 +1,6 @@
 package com.bank.crm.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,6 +13,7 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.bank.crm.entity.Customer;
+import com.bank.crm.entity.User;
 
 @Repository("BankDaoImpl")
 @Scope("singleton")
@@ -47,6 +49,7 @@ public class BankDaoImpl extends HibernateDaoSupport implements BankDao {
 	public List<Customer> showPendingCustomers() {
 		List<Customer> customerList = 
 				(List<Customer>) super.getHibernateTemplate().find("from Customer where status=?", "Pending");
+		System.out.println(customerList.get(0));
 		return customerList;
 	}
 	
@@ -59,6 +62,20 @@ public class BankDaoImpl extends HibernateDaoSupport implements BankDao {
 		List<Customer> customerList = 
 				(List<Customer>) super.getHibernateTemplate().find("from Customer where status=?", "Accepted");
 		return customerList;
+	}
+
+	/**
+	 * Retrieves all Agents that are currently online
+	 */
+	public List<String> showOnlineAgents() {
+		System.out.println("In DAO layer");
+		String hql = "select a.username from Authority a, User u " +
+						"where a.authority=? " +
+						"and u.status=1 " +
+						"and a.username=u.username";
+		List<String> agentList =
+			(List<String>) super.getHibernateTemplate().find(hql, "ROLE_AGENT");
+		return agentList;
 	}
 
 }

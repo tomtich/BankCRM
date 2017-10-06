@@ -3,6 +3,7 @@ package com.bank.crm.dao;
 import java.util.List;
 
 import com.bank.crm.entity.Customer;
+import com.bank.crm.entity.User;
 
 public interface BankDao {
 	
@@ -15,5 +16,8 @@ public interface BankDao {
 	public List<Customer> showPendingCustomers();
 	
 	public List<Customer> showAcceptedCustomers();
+	
+	//Retrieves all Agents that are currently online
+	public List<String> showOnlineAgents();
 
 }

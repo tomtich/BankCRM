@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bank.crm.entity.form.UserForm;
 import com.bank.crm.service.AuthService;
 import com.bank.crm.service.BankService;
 import com.web.bank.controller.model.CustomerForm;
@@ -87,6 +88,16 @@ public class BankController {
 		}
 		return "teamLeaderHome";
 	}
+	
+//	@RequestMapping(value="teamLeaderHome", method=RequestMethod.GET)
+//	public String showOnlineAgents(Model model) {
+//		List<String> agentList = bankService.showOnlineAgents();
+//		model.addAttribute("agentList", agentList);
+//		for (String agent : agentList) { //for testing purposes
+//			System.out.println(agent);
+//		}
+//		return "teamLeaderHome";
+//	}
 	
 //	@RequestMapping(value="/update", method=RequestMethod.PUT,
 //			consumes = {"application/json", "application/xml"},

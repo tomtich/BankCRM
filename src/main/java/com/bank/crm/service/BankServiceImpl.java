@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bank.crm.dao.BankDao;
 import com.web.bank.controller.model.CustomerForm;
 import com.bank.crm.entity.Customer;
+import com.bank.crm.entity.User;
+import com.bank.crm.entity.form.UserForm;
 
 @Service("BankServiceImpl")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -51,6 +53,18 @@ public class BankServiceImpl implements BankService {
 			customerFormList.add(customerForm); //populate the CustomerForm list
 		}
 		return customerFormList;
+	}
+
+	public List<String> showOnlineAgents() {
+		List<String> agentList = bankDao.showOnlineAgents(); //get the Agents
+//		List<UserForm> userFormList = new ArrayList<UserForm>(); //make a list of UserForms
+//		for (User agent : agentList) {
+//			UserForm userForm = new UserForm();
+//			BeanUtils.copyProperties(agent, userForm); //transfer properties of each Agent to UserForms
+//			userFormList.add(userForm); //populate the CustomerForm list
+//		}
+//		return userFormList;
+		return agentList;
 	}
 
 }
