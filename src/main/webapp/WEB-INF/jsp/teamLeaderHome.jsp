@@ -56,9 +56,11 @@ $(document).ready(function(){
 			mimeType : 'application/json',
 			success : function(jsonData) {
 				alert(jsonData);
+				console.log(jsonData);
 			},
 			error : function(data, status, er) {
 				alert("error: " + data + " status: " + status + " er:" + er);
+				console.log(data);
 			}
 		}
 

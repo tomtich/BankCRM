@@ -90,16 +90,16 @@ public class BankController {
 		return "teamLeaderHome";
 	}
 	
-	@RequestMapping(value="/teamLeaderHomeAgents", method=RequestMethod.GET/*, produces= {"application/json"}*/)
-	public String showOnlineAgents(Model model) {
-//		List<String> agentList = bankService.showOnlineAgents();
-		List<User> agentList = new ArrayList<User>();
-		agentList.add(new User()); agentList.add(new User());
+	@RequestMapping(value="/teamLeaderHomeAgents", method=RequestMethod.GET,
+			consumes= {"application/json"}
+			, produces= {"application/json"})
+	@ResponseBody public List<String> showOnlineAgents(Model model) {
+		List<String> agentList = bankService.showOnlineAgents();
 		model.addAttribute("agentList", agentList);
-		for (User agent : agentList) { //for testing purposes
+		for (String agent : agentList) { //for testing purposes
 			System.out.println(agent.toString());
 		}
-		return "teamLeaderHome";
+		return agentList;
 	}
 	
 //	@RequestMapping(value="/update", method=RequestMethod.PUT,
