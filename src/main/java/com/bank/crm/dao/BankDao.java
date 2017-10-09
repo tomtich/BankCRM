@@ -2,6 +2,7 @@ package com.bank.crm.dao;
 
 import java.util.List;
 
+import com.bank.crm.entity.AgentCustomerAssignment;
 import com.bank.crm.entity.Customer;
 import com.bank.crm.entity.User;
 
@@ -19,5 +20,8 @@ public interface BankDao {
 	
 	//Retrieves all Agents that are currently online
 	public List<String> showOnlineAgents();
+	
+	//Retrieves all Agent-Customer assignments
+	public List<AgentCustomerAssignment> showAssignments();
 
 }

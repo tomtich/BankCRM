@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import com.bank.crm.entity.AgentCustomerAssignment;
 import com.bank.crm.entity.Customer;
 import com.bank.crm.entity.User;
 
@@ -76,6 +77,12 @@ public class BankDaoImpl extends HibernateDaoSupport implements BankDao {
 		List<String> agentList =
 			(List<String>) super.getHibernateTemplate().find(hql, "ROLE_AGENT");
 		return agentList;
+	}
+
+	public List<AgentCustomerAssignment> showAssignments() {
+		String hql = "from AgentCustomerAssignment";
+		List<AgentCustomerAssignment> assignmentList = (List<AgentCustomerAssignment>) super.getHibernateTemplate().find(hql);
+		return assignmentList;
 	}
 
 }

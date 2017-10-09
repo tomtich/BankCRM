@@ -12,8 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bank.crm.dao.BankDao;
 import com.web.bank.controller.model.CustomerForm;
+import com.bank.crm.entity.AgentCustomerAssignment;
 import com.bank.crm.entity.Customer;
 import com.bank.crm.entity.User;
+import com.bank.crm.entity.form.AgentCustomerAssignmentForm;
 import com.bank.crm.entity.form.UserForm;
 
 @Service("BankServiceImpl")
@@ -65,6 +67,17 @@ public class BankServiceImpl implements BankService {
 //		}
 //		return userFormList;
 		return agentList;
+	}
+
+	public List<AgentCustomerAssignmentForm> showAssignments() {
+		List<AgentCustomerAssignment> assignmentList = bankDao.showAssignments();
+		List<AgentCustomerAssignmentForm> assignmentFormList = new ArrayList<AgentCustomerAssignmentForm>();
+		for (AgentCustomerAssignment assignment : assignmentList) {
+			AgentCustomerAssignmentForm assignmentForm = new AgentCustomerAssignmentForm();
+			BeanUtils.copyProperties(assignment, assignmentForm);
+			assignmentFormList.add(assignmentForm);
+		}
+		return assignmentFormList;
 	}
 
 }

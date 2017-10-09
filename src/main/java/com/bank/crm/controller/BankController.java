@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bank.crm.entity.User;
+import com.bank.crm.entity.form.AgentCustomerAssignmentForm;
 import com.bank.crm.entity.form.UserForm;
 import com.bank.crm.service.AuthService;
 import com.bank.crm.service.BankService;
@@ -102,6 +103,18 @@ public class BankController {
 			System.out.println(agent.toString());
 		}
 		return agentList;
+	}
+	
+	@RequestMapping(value="/teamLeaderHomeAssignments", method=RequestMethod.GET,
+			consumes= {"application/json"},
+			produces= {"application/json"})
+	@ResponseBody public List<AgentCustomerAssignmentForm> showAssignments(Model model) {
+		List<AgentCustomerAssignmentForm> assignmentList = bankService.showAssignments();
+		model.addAttribute("assignmentList", assignmentList);
+		for (AgentCustomerAssignmentForm assignment : assignmentList) { //for testing purposes
+			System.out.println(assignment.toString());
+		}
+		return assignmentList;
 	}
 	
 //	@RequestMapping(value="/update", method=RequestMethod.PUT,

@@ -5,46 +5,12 @@
 <head>
 <script src="http://code.jquery.com/jquery-2.2.4.min.js">
 </script>
-<!-- <script>
-jQuery(document).ready(function() {
-$.get("teamLeaderHomeAgents.html", { // change this to the url of Rest API
-}, function(responseText) {
-$.each(responseText, function(key1, value1) {
-	$("#activeAgents").append(value1);
-});
-});
 
-$.get("teamLeaderHomeCustomers.html", { // change this to the url of Rest API
-}, function(responseText) {
-$.each(responseText, function(key1, value1) {
-	$("#acceptedCustomers").append(value1);
-});
-});
-});
-</script> -->
-<!-- <script>
-jQuery(document).ready(function() {
-$.ajax({
-		 type:'GET',
-		 url:'teamLeaderHomeCustomers.html',
-		 dataType:"json",
-		 contentType:'application/json',
-		 mimeType: 'application/json',
-		 success: function(responseText) {
-			 alert(responseText);
-			 var json = $.parseJSON(responseText);
-		    		   
-			 $.each(json, function(key1, value1) {
-				 $("#acceptedCustomers").append(value1);
-			});
-			 //$("#catItems").append('<option>OTHERS</option>'); 
-		 }
-	 });
-});
-</script> -->
 <script>
-//var selectedName = "";
-//function that render the online agents
+/**
+ * Function that renders the online Agents and accepted Customers by
+ submitting an AJAX request to the server.
+ */
 $(document).ready(function(){
 	
 	var purl ="teamLeaderHomeAgents";
@@ -69,6 +35,25 @@ $(document).ready(function(){
 	var qurl = "teamLeaderHomeCustomers";
 	$.ajax({
 		url : qurl,
+		type : 'GET',
+		dataType : 'json',
+		contentType : 'application/json',
+		mimeType : 'application/json',
+		success : function(jsonData) {
+			alert(jsonData);
+			console.log(jsonData);
+		},
+		error : function(data, status, er) {
+			alert("error: " + data + " status: " + status + " er:" + er);
+			console.log(data);
+		}
+	}
+
+	);//end of ajax call
+	
+	var rurl = "teamLeaderHomeAssignments";
+	$.ajax({
+		url : rurl,
 		type : 'GET',
 		dataType : 'json',
 		contentType : 'application/json',
