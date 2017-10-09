@@ -22,7 +22,7 @@ $.each(responseText, function(key1, value1) {
 });
 });
 </script> -->
-<script>
+<!-- <script>
 jQuery(document).ready(function() {
 $.ajax({
 		 type:'GET',
@@ -41,6 +41,30 @@ $.ajax({
 		 }
 	 });
 });
+</script> -->
+<script>
+//var selectedName = "";
+//function that render the online agents
+$(document).ready(function(){
+	
+	var purl ="teamLeaderHomeAgents";
+	$.ajax({
+			url : purl,
+			type : 'GET',
+			dataType : 'json',
+			contentType : 'application/json',
+			mimeType : 'application/json',
+			success : function(jsonData) {
+				alert(jsonData);
+			},
+			error : function(data, status, er) {
+				alert("error: " + data + " status: " + status + " er:" + er);
+			}
+		}
+
+	);//end of ajax call
+});
+
 </script>
 
 </head>
@@ -50,7 +74,7 @@ $.ajax({
 </head>
 <body>
 	Hello Team Agent!
-	<div id="activeAgents"></div>
-	<div id="acceptedCustomers"></div>
+	<div id="activeAgents"></div> <!-- Show online agents here -->
+	<div id="acceptedCustomers"></div> <!-- Show accepted customers here -->
 </body>
 </html>
