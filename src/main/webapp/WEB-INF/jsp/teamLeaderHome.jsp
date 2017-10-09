@@ -65,6 +65,25 @@ $(document).ready(function(){
 		}
 
 	);//end of ajax call
+	
+	var qurl = "teamLeaderHomeCustomers";
+	$.ajax({
+		url : qurl,
+		type : 'GET',
+		dataType : 'json',
+		contentType : 'application/json',
+		mimeType : 'application/json',
+		success : function(jsonData) {
+			alert(jsonData);
+			console.log(jsonData);
+		},
+		error : function(data, status, er) {
+			alert("error: " + data + " status: " + status + " er:" + er);
+			console.log(data);
+		}
+	}
+
+	);//end of ajax call
 });
 
 </script>
@@ -75,7 +94,7 @@ $(document).ready(function(){
 <title>Home</title>
 </head>
 <body>
-	Hello Team Agent!
+	Hello Team Leader!
 	<div id="activeAgents"></div> <!-- Show online agents here -->
 	<div id="acceptedCustomers"></div> <!-- Show accepted customers here -->
 </body>

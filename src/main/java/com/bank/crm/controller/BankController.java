@@ -80,19 +80,21 @@ public class BankController {
 		return "bankManagerHome";
 	}
 	
-	@RequestMapping(value="teamLeaderHome", method=RequestMethod.GET)
-	public String showAcceptedCustomers(Model model) {
+	@RequestMapping(value="/teamLeaderHomeCustomers", method=RequestMethod.GET,
+			consumes= {"application/json"},
+			produces= {"application/json"})
+	@ResponseBody public List<CustomerForm> showAcceptedCustomers(Model model) {
 		List<CustomerForm> customerList = bankService.showAcceptedCustomers();
 		model.addAttribute("customerList", customerList);
 		for (CustomerForm cf : customerList) { //for testing purposes
 			System.out.println(cf.getName());
 		}
-		return "teamLeaderHome";
+		return customerList;
 	}
 	
 	@RequestMapping(value="/teamLeaderHomeAgents", method=RequestMethod.GET,
-			consumes= {"application/json"}
-			, produces= {"application/json"})
+			consumes= {"application/json"},
+			produces= {"application/json"})
 	@ResponseBody public List<String> showOnlineAgents(Model model) {
 		List<String> agentList = bankService.showOnlineAgents();
 		model.addAttribute("agentList", agentList);
