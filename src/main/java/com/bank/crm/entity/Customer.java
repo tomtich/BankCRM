@@ -93,7 +93,9 @@ public class Customer {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+	public int getCid() {
+		return cid;
+	}
 	
 }
 

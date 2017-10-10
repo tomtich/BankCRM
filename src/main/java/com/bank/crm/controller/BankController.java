@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,31 +55,27 @@ public class BankController {
 		return "teamLeaderHome";
 	}
 	
-	@RequestMapping(value="acceptCustomer.do", method=RequestMethod.PUT,
-			consumes = {"application/json", "application/xml"},
+	//Change the status of a Customer to Accepted
+	@RequestMapping(value="/acceptCustomer/{pk}", method=RequestMethod.PUT,
 			produces = {"application/json", "application/xml"})
-	public String acceptCustomer(@RequestParam("cid") int cid) {
-		String result = bankService.acceptCustomer(cid);
-		return "bankManagerHome";
+	@ResponseBody public String acceptCustomer(@PathVariable("pk") int cid) {
+		return bankService.acceptCustomer(cid);
 	}
 	
-	@RequestMapping(value="rejectCustomer.do", method=RequestMethod.PUT,
-			consumes = {"application/json", "application/xml"},
+	//Change the status of a Customer to Rejected
+	@RequestMapping(value="/rejectCustomer/{pk}", method=RequestMethod.PUT,
 			produces = {"application/json", "application/xml"})
-	public String rejectCustomer(@RequestParam("cid") int cid) {
-		String result = bankService.rejectCustomer(cid);
-		return "bankManagerHome";
+	@ResponseBody public String rejectCustomer(@PathVariable("pk") int cid) {
+		return bankService.rejectCustomer(cid);
 	}
 	
-	@RequestMapping(value="bankManagerHome", method=RequestMethod.GET)
-	public String showPendingCustomers(Model model) {
-		System.out.println("In Controller");
+	@RequestMapping(value="/customers", method=RequestMethod.GET)
+	@ResponseBody public List<CustomerForm> showPendingCustomers() {
 		List<CustomerForm> customerList = bankService.showPendingCustomers();
-		model.addAttribute("customerList", customerList);
 		for (CustomerForm cf : customerList) {
-			System.out.println(cf.getName());
+			System.out.println(cf.getName()+" "+cf.getCid());
 		}
-		return "bankManagerHome";
+		return customerList;
 	}
 	
 	@RequestMapping(value="/teamLeaderHomeCustomers", method=RequestMethod.GET,
@@ -128,6 +125,8 @@ public class BankController {
 //		amr.setMessage("Employee data has been successfully updated.");
 //		return amr;
 //	}
+	
+	/* ################# Below is Security stuff, disregard for now ######################## */
 	
 	@RequestMapping(value="auth")
 	public String authUser(String username, String password, HttpSession session, Model model) {
