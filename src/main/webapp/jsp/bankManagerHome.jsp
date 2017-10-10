@@ -62,22 +62,25 @@
 				});
 	} */
 	// This function is used to change status of customer from Pending status to Accepted status
-	function acceptedRecord(id) {
-		//https://stackoverflow.com/questions/2153917/how-to-send-a-put-delete-request-in-jquery
-		var purl = contextPath + "/acceptCustomer/" + id;
+	function acceptedRecord(cid) {
+		var purl = contextPath + "/acceptCustomer/" + cid;
+		console.log("here");
 		$.ajax({
 			url : purl,
 			type : 'PUT',
 			success : function(jsonData) { //data= this.responseText
 				//data is JavaScript object against JSON response coming fromm the server
-				console.log("jsonData.status" + jsonData.status);
+				console.log("jsonData.status " + jsonData.status);
 				if (jsonData.status == "success") {
-					$("#mydiv" + id).hide();
+					console.log("success");
+					$("#mydiv" + cid).hide();
+					location.reload();
 				} else {
 					alert("Sorry! data could not be deleted");
 				}
 			}
 		});
+		window.location.reload();
 	}
 	// This function is used to change status of customer from Pending status to Rejected status
 	function rejectedRecord(id) {
@@ -96,6 +99,7 @@
 				}
 			}
 		});
+		window.location.reload();
 	}
     
 	// This function is used to add new Customer to list
@@ -145,11 +149,11 @@
 		contents = contents + '<form name="pendingList">';
 		contents = contents
 				+ '<button type="button" class="btn btn-primary" onclick = "acceptedRecord('
-				+ srow.id
+				+ srow.cid
 				+ ')" style="display: inline;margin-left: 30px;" id="accept">Accept</button>';
 		contents = contents
 				+ '<button type="button" class="btn btn-primary" onclick = "rejectedRecord('
-				+ srow.id
+				+ srow.cid
 				+ ')" style="display: inline;margin-left: 40px;" id="reject">Reject</button>';
 		contents = contents + '</form>';
 		contents = contents + '</div>';
