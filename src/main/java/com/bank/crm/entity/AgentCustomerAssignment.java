@@ -1,8 +1,13 @@
 package com.bank.crm.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -10,14 +15,15 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity
 @Table(name="AgentCustomerAssignments")
 @DynamicUpdate
-public class AgentCustomerAssignment {
+public class AgentCustomerAssignment implements Serializable {
 	
-	@Id
 	@Column(length=100)
 	private String agentUsername;
 	
-	@Column(length=100)
-	private String customerName;
+	@Id
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="cid")
+	private Customer customer;
 	
 	@Column
 	private int status; //0 or 1; 0 = Agent is ready to be assigned to a new Customer, 1 = not ready
@@ -28,11 +34,11 @@ public class AgentCustomerAssignment {
 	public void setAgentUsername(String agentUsername) {
 		this.agentUsername = agentUsername;
 	}
-	public String getCustomerName() {
-		return customerName;
+	public Customer getCustomer() {
+		return customer;
 	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	public int getStatus() {
 		return status;

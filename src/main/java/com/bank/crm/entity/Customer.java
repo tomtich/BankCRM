@@ -17,6 +17,7 @@ import org.hibernate.annotations.DynamicUpdate;
 public class Customer {
 
 	@Id
+	@Column(name="cid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cid;
 	
