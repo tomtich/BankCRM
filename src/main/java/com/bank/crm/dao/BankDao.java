@@ -23,5 +23,8 @@ public interface BankDao {
 	
 	//Retrieves all Agent-Customer assignments
 	public List<AgentCustomerAssignment> showAssignments();
+	
+	//Assigns an Agent to a Customer
+	public void assign(String agentUsername, int cid);
 
 }

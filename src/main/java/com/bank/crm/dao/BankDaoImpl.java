@@ -85,4 +85,24 @@ public class BankDaoImpl extends HibernateDaoSupport implements BankDao {
 		return assignmentList;
 	}
 
+	public void assign(String agentUsername, int cid) {
+		// Get the agent
+		String hql = "from User where username=?";
+		List<User> agentList = (List<User>) super.getHibernateTemplate().find(hql, agentUsername);
+		User agent = agentList.get(0);
+		
+		// Get the customer
+		hql = "from Customer where cid=?";
+		List<Customer> customerList = (List<Customer>) super.getHibernateTemplate().find(hql, cid);
+		
+		// Create the assignment
+		AgentCustomerAssignment aca = new AgentCustomerAssignment();
+		aca.setAgentUsername(agent.getUsername());
+		aca.setCustomer(customerList.get(0));
+		aca.setStatus(1);
+		
+		// Persist the assignment
+		super.getHibernateTemplate().update(aca);
+	}
+
 }

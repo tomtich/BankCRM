@@ -114,6 +114,13 @@ public class BankController {
 		return assignmentList;
 	}
 	
+	@RequestMapping(value="/teamLeaderHomeAssign/{a}/{cid}", method=RequestMethod.PUT,
+			consumes= {"application/json"},
+			produces= {"application/json"})
+	public void assign(@PathVariable("a") String agentUsername, @PathVariable("cid") int cid) {
+		bankService.assign(agentUsername, cid);
+	}
+	
 //	@RequestMapping(value="/update", method=RequestMethod.PUT,
 //			consumes = {"application/json", "application/xml"},
 //			produces = {"application/json", "application/xml"})

@@ -69,6 +69,9 @@ $(document).ready(function(){
 		success : function(jsonData) {
 			alert(jsonData);
 			console.log(jsonData);
+			for (var i = 0; i < jsonData.length; i++) {
+				showAssignments(jsonData[i]);
+			}
 		},
 		error : function(data, status, er) {
 			alert("error: " + data + " status: " + status + " er:" + er);
@@ -97,12 +100,24 @@ $(document).ready(function(){
 		
 		var tr = document.createElement("tr");
 		
+		generateCell(tr, customer.cid);
 		generateCell(tr, customer.name);
 		generateCell(tr, customer.address);
 		generateCell(tr, customer.contact);
 		generateCell(tr, customer.age);
 		generateCell(tr, customer.loan);
 		generateCell(tr, customer.ssn);
+		
+		table.appendChild(tr);
+	}
+	
+	function showAssignments(assignment) {
+		var table = document.getElementById("assignmentsTable");
+		
+		var tr = document.createElement("tr");
+		
+		generateCell(tr, assignment.agentUsername);
+		generateCell(tr, assignment.customer.cid);
 		
 		table.appendChild(tr);
 	}
@@ -149,6 +164,7 @@ $(document).ready(function(){
 		</thead>
 		<thead>
 			<tr style="background-color: rgba(12, 200, 160, 1);">
+				<th>CID</th>
 				<th>Name</th>
 				<th>Address</th>
                 <th>Phone</th>
@@ -164,6 +180,23 @@ $(document).ready(function(){
 	</div>
 	
 	<!-- Show Agent-Customer assignments here -->
-	<div id="agentCustomerAssignments"></div>
+	<div id="agentCustomerAssignments">
+		<table id="assignmentsTable" class="table table-bordered" style="width: 25%;">
+		<thead>
+			<tr style="background-color: rgba(1, 171, 114, 0.18);">
+				<th>Agent-Customer Assignments:</th>
+			</tr>
+		</thead>
+		<thead>
+			<tr style="background-color: rgba(12, 200, 160, 1);">
+				<th>Agent Name</th>
+				<th>Customer ID</th>
+			</tr>
+		</thead>
+        <tbody>
+        </tbody>
+		</table>
+		<br/><br/><br/><br/>
+	</div>
 </body>
 </html>

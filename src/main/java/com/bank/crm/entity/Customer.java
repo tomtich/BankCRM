@@ -97,6 +97,12 @@ public class Customer {
 	public int getCid() {
 		return cid;
 	}
+	@Override
+	public String toString() {
+		return "Customer [cid=" + cid + ", name=" + name + ", age=" + age + ", address=" + address + ", contact="
+				+ contact + ", loan=" + loan + ", ssn=" + ssn + ", requestDate=" + requestDate + ", status=" + status
+				+ "]";
+	}
 	
 }
 

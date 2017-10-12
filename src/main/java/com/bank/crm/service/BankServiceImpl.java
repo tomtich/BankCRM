@@ -71,13 +71,24 @@ public class BankServiceImpl implements BankService {
 
 	public List<AgentCustomerAssignmentForm> showAssignments() {
 		List<AgentCustomerAssignment> assignmentList = bankDao.showAssignments();
+		
+		System.out.println("In Service layer");
+		for (AgentCustomerAssignment assignment : assignmentList) {
+			System.out.println(assignment.getCustomer().toString());
+		}
+		
 		List<AgentCustomerAssignmentForm> assignmentFormList = new ArrayList<AgentCustomerAssignmentForm>();
 		for (AgentCustomerAssignment assignment : assignmentList) {
 			AgentCustomerAssignmentForm assignmentForm = new AgentCustomerAssignmentForm();
 			BeanUtils.copyProperties(assignment, assignmentForm);
+			assignmentForm.setCustomer(assignment.getCustomer());
 			assignmentFormList.add(assignmentForm);
 		}
 		return assignmentFormList;
+	}
+
+	public void assign(String agentUsername, int cid) {
+		bankDao.assign(agentUsername, cid);
 	}
 
 }

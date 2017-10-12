@@ -23,4 +23,6 @@ public interface BankService {
 	public List<String> showOnlineAgents();
 	
 	public List<AgentCustomerAssignmentForm> showAssignments();
+	
+	public void assign(String agentUsername, int cid);
 }
