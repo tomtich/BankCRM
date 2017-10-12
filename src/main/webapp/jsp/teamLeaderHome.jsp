@@ -118,6 +118,7 @@ $(document).ready(function(){
 		
 		generateCell(tr, assignment.agentUsername);
 		generateCell(tr, assignment.customer.cid);
+		generateCell(tr, assignment.status);
 		
 		table.appendChild(tr);
 	}
@@ -191,6 +192,7 @@ $(document).ready(function(){
 			<tr style="background-color: rgba(12, 200, 160, 1);">
 				<th>Agent Name</th>
 				<th>Customer ID</th>
+				<th>Agent Status</th>
 			</tr>
 		</thead>
         <tbody>
